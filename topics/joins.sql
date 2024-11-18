@@ -1,4 +1,5 @@
 -- //? Joins  
+use store;
 SELECT fabricante.nombre AS fabricante, SUM(producto.precio) AS producto FROM fabricante
 INNER JOIN producto ON  producto.id_fabricante =  fabricante.id GROUP BY fabricante.nombre;
 
@@ -53,14 +54,35 @@ ON p.id_fabricante = f.id AND f.nombre = 'Lenovo';
 SELECT p.nombre FROM producto p
 INNER JOIN fabricante f 
 ON p.id_fabricante = f.id AND f.nombre = 'Crucial ';
--- 8. Devuelve un listado con todos los productos de los fabricantes Asus. Hewlett-Packardy Seagate. Sin utilizar el operador IN.
-
--- 9. Devuelve un listado con todos los productos de los fabricantes Asus. Hewlett-Packardy Seagate. Utilizando el operador IN.
-
+-- 8. Devuelve un listado con todos los productos de los fabricantes Asus. Hewlett-Packard Seagate. Sin utilizar el operador IN.
+SELECT p.nombre FROM producto p
+INNER JOIN fabricante f 
+ON f.id = p.id_fabricante
+WHERE f.nombre LIKE 'A%' OR f.nombre LIKE 'H%d' OR f.nombre LIKE 'S%e';
+-- 9. Devuelve un listado con todos los productos de los fabricantes Asus. Hewlett-Packard Seagate. Utilizando el operador IN.
+SELECT p.nombre FROM producto p
+INNER JOIN fabricante f 
+ON f.id = p.id_fabricante
+WHERE f.nombre IN('Asus', 'Hewlett-Packard', 'Seagate');
 -- 10. Devuelve un listado con el nombre y el precio de todos los productos de los fabricantes cuyo nombre termine por la vocal e.
-
+SELECT p.nombre, p.precio FROM producto p
+INNER JOIN fabricante f 
+ON f.id = p.id_fabricante
+WHERE f.nombre LIKE '%e';
 -- 11. Devuelve un listado con el nombre y el precio de todos los productos cuyo nombre de fabricante contenga el car�cter w en su nombre.
-
+SELECT p.nombre, p.precio FROM producto p
+INNER JOIN fabricante f 
+ON f.id = p.id_fabricante
+WHERE f.nombre LIKE '%w%';
 -- 12. Devuelve un listado con el nombre de producto, precio y nombre de fabricante, de todos los productos que tengan un precio mayor o igual a 180�. Ordene el resultado en primer lugar por el precio (en orden descendente) y en segundo lugar por el nombre (en orden ascendente)
+SELECT p.nombre, p.precio, f.nombre FROM producto p
+INNER JOIN fabricante f 
+ON f.id = p.id_fabricante
+WHERE p.precio >= 180
+ORDER BY p.precio DESC, p.nombre ;
 
 -- 13. Devuelve un listado con el identificador y el nombre de fabricante. solamente de aquellos fabricantes que tienen productos asociados en la base de datos.
+SELECT f.id, f.nombre FROM fabricante f
+INNER JOIN producto p
+ON f.id = p.id_fabricante
+GROUP BY f.id, f.nombre;
