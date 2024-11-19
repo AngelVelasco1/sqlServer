@@ -33,4 +33,4 @@ INSERT INTO producto VALUES('Disco duro SATA3 1TB', 86.99, 5),
 ('Port�til Ideapad 320', 444, 2),
 ('Impresora HP Deskjet 3720', 59.99, 3),
 ('Impresora HP Laserjet Pro M26nw', 180, 3);
-
+INSERT INTO producto VALUES('Computador HP nvida plus', 600, 3);

@@ -1,5 +1,5 @@
 -- //? Con Operadores Basicos de Comparacion 
-use store;
+
 -- //* Devuelve todos los productos del fabricante lenovo
 SELECT nombre FROM producto WHERE id_fabricante = (SELECT id FROM fabricante WHERE nombre = 'Lenovo');
 -- //* Devuelve todos los datos de los productos que tienen el mismo precio que el producto mas caro de Lenovo
