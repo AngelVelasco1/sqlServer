@@ -242,3 +242,19 @@ SELECT nombre, presupuesto FROM departamento WHERE presupuesto =
 (SELECT MIN(presupuesto) FROM departamento);
 
 -- 59
+SELECT MAX(presupuesto) maximo_presupuesto FROM departamento;
+
+-- 60
+SELECT nombre, presupuesto FROM departamento WHERE presupuesto = 
+(SELECT MAX(presupuesto) FROM departamento);
+
+--61
+SELECT COUNT(id) FROM empleado;
+
+--62
+SELECT COUNT(id) FROM empleado WHERE apellido_2 != 'NULL';
+
+-- 63
+SELECT d.nombre, COUNT(e.id_departamento) AS numero_empleados FROM departamento d
+INNER JOIN empleado e ON e.id_departamento = d.id
+GROUP BY d.nombre;
