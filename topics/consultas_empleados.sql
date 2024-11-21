@@ -139,29 +139,106 @@ WHERE presupuesto NOT IN
 SELECT nombre, gastos, presupuesto  FROM departamento
 WHERE gastos > presupuesto;
 
+-- 34
 SELECT nombre, gastos, presupuesto  FROM departamento
 WHERE gastos < presupuesto;
-
+-- 35
 SELECT nombre, gastos, presupuesto  FROM departamento
 WHERE gastos = presupuesto;
 
+-- 36
 SELECT  * FROM empleado WHERE apellido_2 IS NULL;
 
-SELECT  * FROM empleado WHERE apellido_2 IS NOT NULL;
+-- 37
+SELECT  * FROM empleado WHERE apellido_2 != 'NULL' OR apellido_2 != NULL; 
 
+-- 38
 SELECT  * FROM empleado WHERE apellido_2 LIKE 'L_pez';
 
+-- 39
 SELECT  * FROM empleado WHERE apellido_2 LIKE 'D_az' OR apellido_2 LIKE 'M%o';
 
+-- 40
 SELECT  * FROM empleado WHERE apellido_2 IN ('Díaz','Moreno');
 
+-- 41
 SELECT nombre, apellido_1, apellido_2, nif FROM empleado 
 WHERE id_departamento = 3;
 
+-- 42
 SELECT nombre, apellido_1, apellido_2, nif FROM empleado 
 WHERE id_departamento IN(2, 4, 5);
 
+-- 43
 SELECT * FROM empleado e
 INNER JOIN departamento d ON d.id = e.id_departamento; 
 
+-- 44
+SELECT * FROM empleado e
+INNER JOIN departamento d ON d.id = e.id_departamento
+ORDER BY d.nombre, e.apellido_1, e.apellido_2, e.nombre; 
 
+-- 45
+SELECT id,nombre,
+case 
+    when presupuesto-gastos<0 then 0
+    when presupuesto-gastos>0 then presupuesto-gastos
+    else ''
+end as presupuesto_actual
+FROM departamento;
+
+-- 46
+SELECT d.nombre FROM departamento d
+INNER JOIN empleado e ON d.id = e.id_departamento
+WHERE e.nif = '38382980M';
+
+-- 47
+SELECT d.nombre FROM departamento d
+INNER JOIN empleado e ON d.id = e.id_departamento
+WHERE e.nombre LIKE 'Pep_';
+
+-- 48
+SELECT * FROM empleado WHERE id_departamento = 
+(SELECT id FROM departamento WHERE nombre LIKE 'I%D');
+
+-- 49
+SELECT DISTINCT d.nombre  FROM departamento d
+INNER JOIN empleado e ON e.id_departamento = d.id
+WHERE e.apellido_2 IS NULL;
+
+-- 50
+SELECT * FROM empleado e
+FULL JOIN departamento d ON d.id = e.id_departamento;
+
+-- 51
+SELECT * FROM empleado WHERE id_departamento IS NULL;
+
+-- 52
+SELECT * FROM departamento d WHERE NOT EXISTS
+(SELECT * FROM empleado e WHERE d.id = e.id_departamento);
+
+-- 53
+SELECT * FROM empleado e 
+FULL JOIN departamento d ON e.id_departamento = d.id
+ORDER BY d.nombre;
+
+-- 54
+SELECT * FROM empleado e 
+FULL JOIN departamento d ON e.id_departamento = d.id
+WHERE NOT EXISTS (SELECT * FROM departamento WHERE d.id = e.id_departamento)
+ORDER BY d.nombre;
+
+-- 55 
+SELECT SUM(presupuesto) suma_presupuesto FROM departamento;
+
+--56
+SELECT ROUND(AVG(presupuesto), 2) promedio_presupuesto FROM departamento;
+
+-- 57
+SELECT MIN(presupuesto) minimo_presupuesto FROM departamento;
+
+-- 58
+SELECT nombre, presupuesto FROM departamento WHERE presupuesto = 
+(SELECT MIN(presupuesto) FROM departamento);
+
+-- 59

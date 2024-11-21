@@ -1,4 +1,4 @@
-
+use empleados;
 CREATE DATABASE empleados;
 use empleados;
 
@@ -8,9 +8,10 @@ CREATE TABLE empleado (
     nombre VARCHAR(100) NOT NULL,
     apellido_1 VARCHAR(100) NOT NULL,
     apellido_2 VARCHAR(100),
-    id_departamento INT NOT NULL REFERENCES departamento(id)
+    id_departamento INT REFERENCES departamento(id)
 );
-
+DROP table empleado;
+DROP table departamento;
 CREATE TABLE departamento (
     id INT IDENTITY PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
