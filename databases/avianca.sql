@@ -1,0 +1,15 @@
+CREATE DATABASE Avianca;
+USE Avianca;
+CREATE TABLE clientes (
+    id INT PRIMARY KEY IDENTITY,
+    nombres VARCHAR(60) NOT NULL,
+    apellidos VARCHAR(10) NOT NULL,
+);
+
+
+SELECT 
+    *
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+WHERE TABLE_NAME = 'clientes';
+
+

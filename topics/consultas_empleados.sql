@@ -258,3 +258,4 @@ SELECT COUNT(id) FROM empleado WHERE apellido_2 != 'NULL';
 SELECT d.nombre, COUNT(e.id_departamento) AS numero_empleados FROM departamento d
 INNER JOIN empleado e ON e.id_departamento = d.id
 GROUP BY d.nombre;
+
