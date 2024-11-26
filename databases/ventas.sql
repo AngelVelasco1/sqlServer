@@ -25,11 +25,14 @@ CREATE TABLE comercial (
 
 CREATE TABLE pedido (
     id INT IDENTITY PRIMARY KEY,
-    total VARCHAR(100) NOT NULL,
-    fecha VARCHAR(100) NOT NULL,
+    total FLOAT NOT NULL,
+    fecha DATE NOT NULL,
     id_cliente INT REFERENCES cliente(id),
     id_comercial INT REFERENCES comercial(id)
 );
+
+ALTER TABLE pedido ALTER COLUMN total FLOAT NOT NULL;
+ALTER TABLE pedido ALTER COLUMN fecha DATE NOT NULL;
 
 
 -- cliente
@@ -84,7 +87,8 @@ INSERT INTO cliente (nombre, apellido1, apellido2, ciudad, categoria) VALUES
 
 
 -- comercial
-INSERT INTO comercial VALUES ('Daniel', 'Sáez', 'Vega', 0.15),
+INSERT INTO comercial VALUES 
+('Daniel', 'Sáez', 'Vega', 0.15),
 ('Juan', 'Gómez', 'López', 0.13),
 ('Diego', 'Flores', 'Salas', 0.11),
 ('Marta', 'Herrera', 'Gil', 0.14),
