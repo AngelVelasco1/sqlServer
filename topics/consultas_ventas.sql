@@ -174,6 +174,14 @@ GROUP BY LEFT(fecha, 4);
 
 -- Subconsultas
 
+-- 1
+SELECT * FROM pedido WHERE id_cliente = (SELECT id FROM cliente WHERE nombre LIKE 'Ade_a')
+
+-- 2
+SELECT COUNT(id) FROM pedido WHERE id_comercial = (SELECT id FROM comercial WHERE nombre LIKE 'Dani_l');
+
+-- 3
+SELECT * FROM cliente c WHERE id = (SELECT id_cliente FROM pedido p WHERE total = (SELECT MAX(total) FROM pedido WHERE YEAR(fecha) = 2017)) 
 
 
-
+SELECT top 1  fecha, total FROM pedido WHERE id_cliente = (SELECT id FROM cliente WHERE nombre LIKE 'PEPE') ORDER BY total DESC
